@@ -10,9 +10,9 @@ import { AuthService } from 'src/app/core/services/auth.service';
     styleUrls: ['./login.component.css']
   })
 
-  export class LoginComponent implements OnInit{
+  export class LoginComponent implements OnInit {
 
-    loginForm:FormGroup;
+    loginForm: FormGroup;
     loading = false;
     submitted = false;
     returnUrl: string;
@@ -31,6 +31,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
     });
     }
     get f() { return this.loginForm.controls; }
+
     onSubmit() {
       this.submitted = true;
 
@@ -45,22 +46,15 @@ import { AuthService } from 'src/app/core/services/auth.service';
       .subscribe((resp) => {
         if(resp['success']){
           this.authService.storUserSession(resp['data']);
-          this.router.navigate(['/dashboard'])
+          this.router.navigate(['/dashboard']);
         }
         this.submitted = false;
         this.loading = false;
         console.log(resp);
+      },(error)=>{
+        this.submitted = false;
+        this.loading = false;
+        console.log(error);
       });
-      // this.authenticationService.login(this.f.username.value, this.f.password.value)
-      // .pipe(first())
-      // .subscribe(
-      //     data => {
-      //         this.router.navigate([this.returnUrl]);
-      //     },
-      //     error => {
-      //         this.alertService.error(error);
-      //         this.loading = false;
-      //     });
     }
-    
   }

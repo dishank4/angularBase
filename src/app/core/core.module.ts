@@ -6,6 +6,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpErrorFilter } from './interceptor/httpErrorFilter.interceptor';
+import { HttpFilter } from './interceptor/httpFilter.interceptor';
 
 @NgModule({
   declarations: [],
@@ -17,7 +19,8 @@ import { ToastrModule } from 'ngx-toastr';
   providers: [
     ApiService,
     AuthService,
-    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorFilter, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpFilter, multi: true },
   ]
 })
 export class CoreModule { }

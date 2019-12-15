@@ -9,7 +9,7 @@ import {
     HttpErrorResponse
 } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
@@ -17,11 +17,10 @@ import { ToastrService } from 'ngx-toastr';
 export class HttpConfigInterceptor implements HttpInterceptor {
     constructor(private toastr:ToastrService) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        debugger;
         const token: string = localStorage.getItem('token');
 
         if (token) {
-            request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
+            request = request.clone({ headers: request.headers.set('Authorization',token) });
         }
 
         if (!request.headers.has('Content-Type')) {
@@ -38,7 +37,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
                 }
                 return event;
             }),
-            catchError((error: HttpErrorResponse) => {
+            catchError((error: any) => {
                 let data = {};
                 data = {
                     reason: error && error.error ? error.error : '',
@@ -47,7 +46,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
                 console.log(data);
                 this.toastr.error(data['reason']['error'],data['status'])
                 //this.errorDialogService.openDialog(data);
-                return throwError(error);
+                return of(error);
             }));
     }
 }

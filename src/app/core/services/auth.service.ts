@@ -16,7 +16,6 @@ export class AuthService {
 
     login(username: string, password: string) {
         return this.apiService.post(APIURL.LOGIN,{"userName": username , "password": password});
-       
     }
 
     logout() {
