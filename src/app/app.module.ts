@@ -8,8 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './scenes/login/login.component';
 import { DashboardComponent } from './scenes/dashboard/dashboard.component';
-import { AuthService } from './services/auth.service';
-import { ApiService } from './services/api.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,11 +22,10 @@ import { ApiService } from './services/api.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
-    AuthService,
-    ApiService
   ],
   bootstrap: [AppComponent]
 })
