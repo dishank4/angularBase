@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpErrorFilter } from './interceptor/httpErrorFilter.interceptor';
 import { HttpFilter } from './interceptor/httpFilter.interceptor';
+import { AuthGuard } from './services/authGuard.service';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import { HttpFilter } from './interceptor/httpFilter.interceptor';
   providers: [
     ApiService,
     AuthService,
+    AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorFilter, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpFilter, multi: true },
   ]

@@ -31,4 +31,8 @@ export class AuthService {
         localStorage.setItem("token","")
         localStorage.setItem("userName","")
     }
+
+    isAuthenticated(){
+        return localStorage.getItem("token") !== "" ? true : false;
+    }
 }
