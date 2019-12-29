@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Column, GridOption } from 'angular-slickgrid';
+import { Column, GridOption, FieldType, Formatters, Filters, FlatpickrOption } from 'angular-slickgrid';
 import { HotelService } from 'src/app/core/services/hotel.service';
 
 @Component({
@@ -26,7 +26,15 @@ export class DashboardComponent implements OnInit {
     });
     this.columnDefinitions = [
       { id: 'code', name: 'Code', field: 'code', sortable: true , dataKey:'code'},
-      { id: 'created_at', name: 'Created At', field: 'created_at', sortable: true },
+      { id: 'created_at', name: 'Created At', field: 'created_at', sortable: true,
+      formatter: Formatters.dateTimeIsoAmPm,
+      type: FieldType.dateUtc, exportWithFormatter: true,
+      outputType: FieldType.dateTimeIsoAmPm,
+      filterable: true,
+      filter: {
+        model: Filters.compoundDate
+      }
+      },
       { id: 'checkin', name: 'Check In', field: 'checkin', sortable: true },
       { id: 'checkout', name: 'Check Out', field: 'checkout' },
       { id: 'hotel_code', name: 'Hotel Code', field: 'hotel_code' },
@@ -38,7 +46,8 @@ export class DashboardComponent implements OnInit {
     this.gridOptions = {
       enableAutoResize: true,
       enableSorting: true,
-      datasetIdPropertyName:'code'
+      datasetIdPropertyName:'code',
+      enableFiltering:true
     };
 
     // fill the dataset with your data
