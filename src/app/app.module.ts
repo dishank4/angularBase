@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; 
+import { AngularSlickgridModule } from 'angular-slickgrid';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,7 @@ import { LoginComponent } from './scenes/login/login.component';
 import { DashboardComponent } from './scenes/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { CoreModule } from './core/core.module';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CoreModule
+    CoreModule,
+    AngularSlickgridModule.forRoot()
   ],
   providers: [
   ],

@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     private location: Location
   ) {
     if (this.authService.isAuthenticated() === true) {
-      this.location.back();
+      //this.location.back();
     }
   }
 
